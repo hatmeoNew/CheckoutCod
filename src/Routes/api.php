@@ -8,10 +8,11 @@
  * 
  */
 use Illuminate\Support\Facades\Route;
-use NexaMerchant\CheckoutCod\Http\Controllers\Api\ExampleController;
+use NexaMerchant\CheckoutCod\Http\Controllers\Api\V1\ExampleController;
 
 Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
-     Route::prefix('checkoutcod')->group(function () {
+    
+     Route::prefix('v1/checkoutcod')->group(function () {
 
         Route::controller(ExampleController::class)->prefix('example')->group(function () {
 

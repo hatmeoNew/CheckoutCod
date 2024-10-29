@@ -7,7 +7,7 @@
  * @link https://github.com/xxxl4
  * 
  */
-namespace NexaMerchant\CheckoutCod\Http\Controllers\Api;
+namespace NexaMerchant\CheckoutCod\Http\Controllers\Api\V1;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
