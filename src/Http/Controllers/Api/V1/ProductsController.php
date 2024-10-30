@@ -2,7 +2,6 @@
 
 namespace NexaMerchant\CheckoutCod\Http\Controllers\Api\V1;
 
-use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Webkul\Category\Repositories\CategoryRepository;
@@ -247,9 +246,65 @@ class ProductsController extends Controller
      */
     public function recommens($slug, Request $request)
     {
-        $data = [];
-        $data['code'] = 200;
-        $data['message'] = "success";
-        return response()->json($data);
+
+        
+        $checkout_path = $request->input("checkout_path");
+
+        //select four recommended products
+
+        $shopify_store_id = config('shopify.shopify_store_id');
+
+
+        $products = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id",$shopify_store_id)->where("status", "active")->select(['product_id','title','handle',"variants","images"])->limit(10)->get();
+
+
+        $recommended_info = [];
+
+        $shopifyStore = Cache::get("shopify_store_".$shopify_store_id);
+
+        if(empty($shopifyStore)){
+            $shopifyStore = \Nicelizhi\Shopify\Models\ShopifyStore::where('shopify_store_id', $shopify_store_id)->first();
+            Cache::put("shopify_store_".$shopify_store_id, $shopifyStore, 3600);
+        }
+
+        $i = 0;
+        $max = 3;
+        foreach($products as $key=> $product) {
+            $images = $product->images;
+            $variants = $product->variants;
+
+            $online = \Webkul\Product\Models\Product::where("sku", $product->product_id)->first();
+            if(is_null($online)) {
+                continue;
+            }
+
+            if($i>=$max) {
+                break;
+            }
+
+            $i++;
+
+            $recommended_info[$key] = [
+                "title" => $product->title,
+                "handle" => $product->handle,
+                "product_id" => $product->product_id,
+                "discount_price" => $variants[0]['price'],
+                "origin_price" => $variants[0]['compare_at_price'],
+                "image_url" => $images[0]['src'],
+                "url" => $shopifyStore->shopify_app_host_name . "/products/" . $product->handle
+            ];
+        }
+ 
+
+
+        
+        return new JsonResource([
+            'checkout_path' => $checkout_path,
+            'recommended_info' => $recommended_info,
+            'currency_symbol' => core()->getCurrentCurrencyCode(),
+            'recommended_info_title' => __('onebuy::app.You may also like')
+        ]);
+
+        
     }
 }
