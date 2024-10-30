@@ -834,7 +834,58 @@ POST api/v1/checkoutcod/orders/create
 
 ```
 {
-    
+  "refer": "default",
+  "return_insurance": 1,
+  "first_name": "Anna",
+  "second_name": "Freitag",
+  "email": "customer@email.de",
+  "phone_full": "01761428434",
+  "country": "US",
+  "city": "Hickory",
+  "province": "E",
+  "address": "2025 McVaney Road",
+  "code": "37197",
+  "product_delivery": "9.99",
+  "currency": "USD",
+  "coupon_code": "hao123",
+  "product_price": 59.184000000000005,
+  "total": "69.17",
+  "amount": 2,
+  "payment_return_url": "/template-common/en/thankyou1/?",
+  "payment_cancel_url": "/onebuy/8472767791334",
+  "phone_prefix": "",
+  "payment_method": "paypal_stand",
+  "products": [
+    {
+      "img": "/cache/large/product/3171/NQMLFQhd1wBr5L6MHQ3mUI6HKhF5ce0r1DbWmbXV.webp",
+      "price": "29.5920",
+      "amount": 2,
+      "description": "Variant 4 1443",
+      "product_id": "3167",
+      "product_sku": "8472767791334-44387808018662",
+      "variant_id": 3171,
+      "attribute_name": "US 5,Black",
+      "attr_id": "24_4,23_1443"
+    }
+  ],
+  "logo_image": "",
+  "brand": "Hatmeo",
+  "description": "2x Hatmeo Women's Breathable Orthotic Shoes",
+  "shopify_store_name": "",
+  "produt_amount_base": "1",
+  "domain_name": "",
+  "price_template": "$price",
+  "omnisend": "",
+  "payment_account": "",
+  "shipping_address": "",
+  "bill_first_name": "",
+  "bill_second_name": "",
+  "bill_country": null,
+  "bill_city": "",
+  "bill_province": null,
+  "bill_address": "",
+  "bill_code": "",
+  "error": false
 }
 ```
 
