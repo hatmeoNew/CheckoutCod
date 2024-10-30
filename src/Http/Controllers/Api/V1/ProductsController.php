@@ -244,7 +244,7 @@ class ProductsController extends Controller
      * @access public
      * @return \Illuminate\Http\Response
      */
-    public function recommens($slug, Request $request)
+    public function recommend($slug, Request $request)
     {
 
         
