@@ -9,6 +9,8 @@
  */
 use Illuminate\Support\Facades\Route;
 use NexaMerchant\CheckoutCod\Http\Controllers\Api\V1\ExampleController;
+use NexaMerchant\CheckoutCod\Http\Controllers\Api\V1\ProductsController;
+use NexaMerchant\CheckoutCod\Http\Controllers\Api\V1\OrdersController;
 
 Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
     
@@ -17,6 +19,15 @@ Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
         Route::controller(ExampleController::class)->prefix('example')->group(function () {
 
             Route::get('demo', 'demo')->name('checkoutcod.api.example.demo');
+
+        });
+
+        Route::controller(ProductsController::class)->prefix('products')->group(function () {
+
+            Route::get('details/{slug}', 'details')->name('checkoutcod.api.products.details');
+
+            // recommend products
+            Route::get('recommend/{slug}', 'recommend')->name('checkoutcod.api.products.recommend');
 
         });
 
