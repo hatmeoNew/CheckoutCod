@@ -18,16 +18,31 @@ Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
 
         Route::controller(ExampleController::class)->prefix('example')->group(function () {
 
-            Route::get('demo', 'demo')->name('checkoutcod.api.example.demo');
+            Route::get('demo', 'demo')->name('checkoutcod.api.v1.example.demo');
 
         });
 
         Route::controller(ProductsController::class)->prefix('products')->group(function () {
 
-            Route::get('details/{slug}', 'details')->name('checkoutcod.api.products.details');
+            Route::get('details/{slug}', 'details')->name('checkoutcod.api.v1.products.details');
 
             // recommend products
-            Route::get('recommend/{slug}', 'recommend')->name('checkoutcod.api.products.recommend');
+            Route::get('recommend/{slug}', 'recommend')->name('checkoutcod.api.v1.products.recommend');
+
+        });
+
+        // Orders
+        Route::controller(OrdersController::class)->prefix('orders')->group(function () {
+
+            Route::post('create', 'create')->name('checkoutcod.api.v1.orders.create');
+
+            Route::get('details/{order_id}', 'details')->name('checkoutcod.api.v1.orders.details');
+
+            Route::get('list', 'list')->name('checkoutcod.api.v1.orders.list');
+
+            Route::get('cancel/{order_id}', 'cancel')->name('checkoutcod.api.v1.orders.cancel');
+
+            Route::get('confirm/{order_id}', 'confirm')->name('checkoutcod.api.v1.orders.confirm');
 
         });
 

@@ -30,3 +30,38 @@ GET api/v1/checkoutcod/products/recommend/{slug}
 
 ```
 ```
+
+# Create Order API
+> This API is used to create an order.
+
+## URL
+
+```
+POST api/v1/checkoutcod/orders/create
+```
+
+## Request
+
+```
+{
+    "user_id": 1,
+    "product_id": 1,
+    "quantity": 1,
+    "total": 100,
+    "status": "pending",
+    "payment_method": "cod",
+    "payment_status": "pending",
+    "shipping_address": "Dhaka, Bangladesh",
+    "shipping_method": "standard",
+    "shipping_cost": 10,
+    "tax": 5,
+    "discount": 0,
+    "grand_total": 115
+}
+```
+
+## Response
+
+```
+
+```
