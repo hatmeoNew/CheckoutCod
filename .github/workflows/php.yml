@@ -82,6 +82,9 @@ jobs:
       # # Build static assets
       # - name: Compile Assets
       #   run: npm run prod
+      # create a project use composer 
+      - name: Create Nexa Merchant Laravel Project
+        run: composer create-project --prefer-dist nexa-merchant/core nexa-merchant
 
       # Run phpunit tests
       - name: Run tests

@@ -10,12 +10,14 @@
         }
     ],
     "require": {
-        "laravel/framework": "~6.0||~7.0||~8.0||~9.0||~10.0||~11.0"
+        "laravel/framework": "~6.0||~7.0||~8.0||~9.0||~10.0||~11.0",
+        "nexa-merchant/core": "dev-master"
     },
     "require-dev": {
         "phpunit/phpcov": ">=6.0",
         "phpunit/phpunit": ">=8.0",
-        "laravel/framework": "~6.0||~7.0||~8.0||~9.0||~10.0||~11.0"
+        "laravel/framework": "~6.0||~7.0||~8.0||~9.0||~10.0||~11.0",
+        "nexa-merchant/core": "dev-master"
     },
     "autoload": {
         "psr-4": {
