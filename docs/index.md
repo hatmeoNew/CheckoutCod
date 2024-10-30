@@ -799,6 +799,26 @@ GET api/v1/checkoutcod/products/recommend/{slug}
 ## Response
 
 ```
+
+{
+    "data": {
+        "checkout_path": null,
+        "recommended_info": [
+            {
+                "title": "【35-41】Pantofi de iarnă din piele naturală, din catifea, anti-alunecare, lucrați manual",
+                "handle": "35-41-pantofi-de-iarna-din-piele-naturala-din-catifea-anti-alunecare-lucrați-manual",
+                "product_id": 9622595567902,
+                "discount_price": "149.00",
+                "origin_price": "199.00",
+                "image_url": "https://cdn.shopify.com/s/files/1/0903/9721/2958/files/20b04b47c558884f50aaab0a19a779b3_858cac9b-e7de-40c1-a4f9-ca71940f8987.jpg?v=1730196328",
+                "url": "https://ro-cod.myshopify.com/products/35-41-pantofi-de-iarna-din-piele-naturala-din-catifea-anti-alunecare-lucrați-manual"
+            }
+        ],
+        "currency_symbol": "LEI",
+        "recommended_info_title": "You may also like"
+    }
+}
+
 ```
 
 # Create Order API
