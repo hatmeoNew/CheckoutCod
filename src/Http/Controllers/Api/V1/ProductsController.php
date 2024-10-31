@@ -76,9 +76,11 @@ class ProductsController extends Controller
         // currency by ip
         $currency = \Nicelizhi\OneBuy\Helpers\Utils::getCurrencyByCountry($ip_country);
 
+
         $currency_get = $request->input('currency');
         if(!empty($currency_get)) {
             core()->setCurrentCurrency($currency_get);
+            $currency = $currency_get;
         }
 
         $data = Cache::get($this->checkout_v2_cache_key.$slug.$currency);
