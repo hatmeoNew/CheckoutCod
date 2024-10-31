@@ -75,11 +75,6 @@ class CheckoutCodServiceProvider extends ServiceProvider
             dirname(__DIR__) . '/Config/paymentmethods.php', 'payment_methods'
         );
 
-        // shpping methods
-        $this->mergeConfigFrom(
-            dirname(__DIR__) . '/Config/shippingmethods.php', 'shipping_methods'
-        );
-
 
         $this->mergeConfigFrom(
             dirname(__DIR__) . '/Config/menu.php', 'menu.admin'

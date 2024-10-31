@@ -170,8 +170,8 @@ class OrdersController extends Controller {
 
         //
         $shippingMethod = "free_free"; // free shipping
-        $shippingMethod = "flatrate_flatrate";
-        $shippingMethod = "cod_flatrate";
+        // $shippingMethod = "flatrate_flatrate";
+        // $shippingMethod = "cod_flatrate";
 
         if (
             Cart::hasError()
