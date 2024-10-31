@@ -252,9 +252,7 @@ class OrdersController extends Controller {
 
         // set the order status to processing
 
-        $order->update([
-            'status' => 'processing',
-        ]);
+        $this->orderRepository->update(['status' => 'processing'], $order->id);
 
         return response()->json($data);
 
