@@ -248,8 +248,6 @@ class ProductsController extends Controller
      */
     public function recommend($slug, Request $request)
     {
-
-        
         $checkout_path = $request->input("checkout_path");
 
         //select four recommended products
@@ -257,7 +255,7 @@ class ProductsController extends Controller
         $shopify_store_id = config('shopify.shopify_store_id');
 
 
-        $products = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id",$shopify_store_id)->where("status", "active")->select(['product_id','title','handle',"variants","images"])->limit(10)->get();
+        $products = \Nicelizhi\Shopify\Models\ShopifyProduct::where("shopify_store_id",$shopify_store_id)->where("status", "active")->select(['product_id','title','handle',"variants","images"])->limit(100)->get();
 
 
         $recommended_info = [];
@@ -270,7 +268,7 @@ class ProductsController extends Controller
         }
 
         $i = 0;
-        $max = 3;
+        $max = 10;
         foreach($products as $key=> $product) {
             $images = $product->images;
             $variants = $product->variants;
