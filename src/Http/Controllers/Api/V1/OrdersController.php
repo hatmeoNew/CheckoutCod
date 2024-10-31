@@ -171,6 +171,7 @@ class OrdersController extends Controller {
         //
         $shippingMethod = "free_free"; // free shipping
         $shippingMethod = "flatrate_flatrate";
+        $shippingMethod = "cod_flatrate";
 
         if (
             Cart::hasError()
@@ -184,12 +185,6 @@ class OrdersController extends Controller {
 
         Cart::collectTotals();
 
-
-        if($payment_method_input=="airwallex_klarna") $payment_method = "airwallex";
-        if($payment_method_input=="airwallex_dropin") $payment_method = "airwallex";
-        if($payment_method_input=="airwallex_google") $payment_method = "airwallex";
-        if($payment_method_input=="airwallex_apple") $payment_method = "airwallex";
-        if($payment_method_input=="airwallex") $payment_method = "airwallex";
 
         $couponCode = $input['coupon_code'];
         try {
@@ -224,40 +219,44 @@ class OrdersController extends Controller {
         }
 
         // when enable the upselling and can config the upselling rule for carts
-        if($payment_method=='airwallex') {
+
             //
-            $payment = [];
-            $payment['description'] = $payment_method."-".$refer;
-            $payment['method'] = $payment_method;
-            $payment['method_title'] = $payment_method."-".$refer;
-            $payment['sort'] = "2";
-            // Cart::savePaymentMethod($payment);
+        $payment = [];
+        $payment['description'] = $payment_method."-".$refer;
+        $payment['method'] = $payment_method;
+        $payment['method_title'] = $payment_method."-".$refer;
+        $payment['sort'] = "2";
+        // Cart::savePaymentMethod($payment);
 
-            if (
-                Cart::hasError()
-                || ! $payment
-                || ! Cart::savePaymentMethod($payment)
-            ) {
-                return response()->json([
-                    'redirect_url' => route('shop.checkout.cart.index'),
-                ], Response::HTTP_FORBIDDEN);
-            }
-
-            
-            Cart::collectTotals();
-            $this->validateOrder();
-            $cart = Cart::getCart();
-
-
-            $order = $this->orderRepository->create(Cart::prepareDataForOrder());
-            // Cart::deActivateCart();
-            // Cart::activateCartIfSessionHasDeactivatedCartId();
-            $data['result'] = 200;
-            $data['order'] = $order;
-
-
-            return response()->json($data);
+        if (
+            Cart::hasError()
+            || ! $payment
+            || ! Cart::savePaymentMethod($payment)
+        ) {
+            return response()->json([
+                'redirect_url' => route('shop.checkout.cart.index'),
+            ], Response::HTTP_FORBIDDEN);
         }
+
+        
+        Cart::collectTotals();
+        $this->validateOrder();
+        $cart = Cart::getCart();
+
+
+        $order = $this->orderRepository->create(Cart::prepareDataForOrder());
+        // Cart::deActivateCart();
+        // Cart::activateCartIfSessionHasDeactivatedCartId();
+        $data['result'] = 200;
+        $data['order'] = $order;
+
+        // set the order status to processing
+
+        $order->update([
+            'status' => 'processing',
+        ]);
+
+        return response()->json($data);
 
     }
 
