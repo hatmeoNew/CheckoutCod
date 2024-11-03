@@ -88,6 +88,11 @@ class ProductsController extends Controller
 
         if(empty($data)) {
             $product = $this->productRepository->findBySlug($slug);
+            if(is_null($product)) {
+                $data = [];
+                $data['error'] = "This Product is Not Found!";
+                return response()->json($data);
+            }
             $data = [];
             $productViewHelper = new \Webkul\Product\Helpers\ConfigurableOption();
             $attributes = $productViewHelper->getConfigurationConfig($product);
