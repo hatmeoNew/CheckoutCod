@@ -52,6 +52,8 @@ class OrdersController extends Controller {
         $input = $request->all();
         $refer = isset($input['refer']) ? trim($input['refer']) : "";
 
+        $ip_country = $request->server('HTTP_CF_IPCOUNTRY'); // add ip country to order
+
         $products = $request->input("products");
         // 
         Cart::deActivateCart();
@@ -222,9 +224,9 @@ class OrdersController extends Controller {
 
             //
         $payment = [];
-        $payment['description'] = $payment_method."-".$refer;
+        $payment['description'] = $payment_method."-".$refer.'-'.$ip_country;
         $payment['method'] = $payment_method;
-        $payment['method_title'] = $payment_method."-".$refer;
+        $payment['method_title'] = $payment_method."-".$refer."-".$ip_country;
         $payment['sort'] = "2";
         // Cart::savePaymentMethod($payment);
 
