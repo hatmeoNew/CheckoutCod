@@ -2,7 +2,7 @@
     "name": "nexa-merchant/checkoutcod",
     "license": "MIT",
     "type": "library",
-    "description" : "CheckoutCod Apps",
+    "description" : "CheckoutCod Apps for Nexa Merchant",
     "authors": [
         {
             "name": "Steve",
@@ -36,5 +36,7 @@
         }
     },
     "homepage": "https://nexamerchant.github.io/docs/",
-    "minimum-stability": "dev"
+    "docs-url": "nexamerchant.github.io/CheckoutCod/",
+    "github": "https://github.com/NexaMerchant/CheckoutCod",
+    "minimum-stability": "stable"
 }
