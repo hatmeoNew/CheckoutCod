@@ -17,12 +17,12 @@ return [
      * 
      * The version of the package
      */
-    'version' => '1.0.3',
+    'version' => '1.0.4',
     /**
      * 
      * The version number of the package
      */
-    'versionNum' => '103',
+    'versionNum' => '104',
 
     /**
      *
@@ -85,4 +85,10 @@ return [
         'email' => 'email@example.com',
         'issues' => 'https://github.com/xxl4'
     ],
+
+    /**
+     * 
+     * financial_status pending
+     */
+    'financial_status' => 'pending',
 ];
