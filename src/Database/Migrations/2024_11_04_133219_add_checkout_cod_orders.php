@@ -13,7 +13,7 @@ return new class extends Migration
     {
         //
         Schema::create("orders_cod", function (Blueprint $table) {
-            $table->autoIncrement("id");
+            $table->bigIncrements("id");
             $table->unsignedBigInteger("order_id")->comment("Order ID");
             // add create and update datetime
             $table->timestamps();
