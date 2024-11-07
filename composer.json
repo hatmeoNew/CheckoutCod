@@ -3,6 +3,7 @@
     "license": "MIT",
     "type": "library",
     "description" : "CheckoutCod Apps for Nexa Merchant",
+    "keywords": ["checkoutcod", "nexamerchant", "laravel", "ecommerce", "payment", "cod", "cashondelivery", "paymentgateway"],
     "authors": [
         {
             "name": "Steve",
