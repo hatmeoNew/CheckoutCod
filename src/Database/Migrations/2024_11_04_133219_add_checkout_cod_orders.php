@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger("order_id")->comment("Order ID");
             // add create and update datetime
             $table->timestamps();
-            $table->foreign("order_id")->references("id")->on("orders")->onDelete("cascade");
+            $table->foreign("order_id")->references("id")->on("orders");
         });
     }
 
