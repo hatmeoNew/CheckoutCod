@@ -12,10 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create("orders_cod", function (Blueprint $table) {
+        Schema::create("order_cods", function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->unsignedBigInteger("order_id")->comment("Order ID");
             // add create and update datetime
+            $table->string("ip_address")->nullable()->comment("IP Address");
+            $table->string("ip_country")->nullable()->comment("IP Country");
             $table->timestamps();
             //$table->foreign("order_id")->references("id")->on("orders");
         });
@@ -27,6 +29,6 @@ return new class extends Migration
     public function down(): void
     {
         //
-        Schema::dropIfExists("orders_cod");
+        Schema::dropIfExists("order_cods");
     }
 };
