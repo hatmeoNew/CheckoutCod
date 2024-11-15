@@ -256,6 +256,13 @@ class OrdersController extends Controller {
 
         $this->orderRepository->update(['status' => 'processing'], $order->id);
 
+        // add the ip address and ip country to order
+        $order_cod = new \NexaMerchant\CheckoutCod\Models\OrderCod();
+        $order_cod->order_id = $order->id;
+        $order_cod->ip_address = $request->ip();
+        $order_cod->ip_country = $ip_country;
+        $order_cod->save();
+
         return response()->json($data);
 
     }

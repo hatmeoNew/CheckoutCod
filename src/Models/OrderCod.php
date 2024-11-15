@@ -13,9 +13,6 @@ class OrderCod extends Model implements OrderCodContract
      *
      * @var array
      */
-    protected $fillable = ['layout'];
+    protected $fillable = ['ip_address', 'ip_country'];
 
-    
-
-  
 }
