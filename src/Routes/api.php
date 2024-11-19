@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 use NexaMerchant\CheckoutCod\Http\Controllers\Api\V1\ExampleController;
 use NexaMerchant\CheckoutCod\Http\Controllers\Api\V1\ProductsController;
 use NexaMerchant\CheckoutCod\Http\Controllers\Api\V1\OrdersController;
-use NexaMerchant\CheckoutCod\Http\Controllers\Api\V1\PusherController;
+use NexaMerchant\CheckoutCod\Http\Controllers\Api\V1\PushController;
 
 Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
     
@@ -48,7 +48,7 @@ Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
         });
 
         // Pusher
-        Route::controller(PusherController::class)->prefix('pusher')->group(function () {
+        Route::controller(PushController::class)->prefix('pusher')->group(function () {
 
             Route::post('send', 'send')->name('checkoutcod.api.v1.pusher.send');
 
