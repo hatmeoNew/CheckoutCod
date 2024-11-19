@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use NexaMerchant\CheckoutCod\Http\Controllers\Api\V1\ExampleController;
 use NexaMerchant\CheckoutCod\Http\Controllers\Api\V1\ProductsController;
 use NexaMerchant\CheckoutCod\Http\Controllers\Api\V1\OrdersController;
+use NexaMerchant\CheckoutCod\Http\Controllers\Api\V1\PusherController;
 
 Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
     
