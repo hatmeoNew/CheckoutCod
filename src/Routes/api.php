@@ -46,5 +46,12 @@ Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
 
         });
 
+        // Pusher
+        Route::controller(PusherController::class)->prefix('pusher')->group(function () {
+
+            Route::post('send', 'send')->name('checkoutcod.api.v1.pusher.send');
+
+        });
+
      });
 });
