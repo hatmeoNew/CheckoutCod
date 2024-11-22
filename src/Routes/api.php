@@ -13,7 +13,7 @@ use NexaMerchant\CheckoutCod\Http\Controllers\Api\V1\ProductsController;
 use NexaMerchant\CheckoutCod\Http\Controllers\Api\V1\OrdersController;
 use NexaMerchant\CheckoutCod\Http\Controllers\Api\V1\PushController;
 
-Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
+Route::group(['middleware' => ['api','assign_request_id'], 'prefix' => 'api'], function () {
     
      Route::prefix('v1/checkoutcod')->group(function () {
 
