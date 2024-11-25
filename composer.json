@@ -11,11 +11,9 @@
         }
     ],
     "require": {
-        "nexa-merchant/apis": "2.0.2",
         "laravel/framework": "~6.0||~7.0||~8.0||~9.0||~10.0||~11.0"
     },
     "require-dev": {
-        "nexa-merchant/apis": "2.0.2",
         "phpunit/phpcov": ">=6.0",
         "phpunit/phpunit": ">=8.0",
         "laravel/framework": "~6.0||~7.0||~8.0||~9.0||~10.0||~11.0"
@@ -39,7 +37,7 @@
         }
     },
     "homepage": "https://nexamerchant.github.io/docs/",
-    "docs-url": "nexamerchant.github.io/CheckoutCod/",
+    "docs-url": "https://nexamerchant.github.io/CheckoutCod/",
     "github": "https://github.com/NexaMerchant/CheckoutCod",
     "minimum-stability": "stable"
 }
