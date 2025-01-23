@@ -54,36 +54,43 @@ class OrdersController extends Controller {
 
         $ip_country = $request->server('HTTP_CF_IPCOUNTRY'); // add ip country to order
 
-        $products = $request->input("products");
-        // 
-        Cart::deActivateCart();
-        foreach($products as $key=>$product) {
-            //var_dump($product);
-            $product['quantity'] = $product['amount'];
-            $product['selected_configurable_option'] = $product['variant_id'];
-            if(!empty($product['attr_id'])) {
-                $attr_ids = explode(',', $product['attr_id']);
-                foreach($attr_ids as $key=>$attr_id) {
-                    $attr = explode('_', $attr_id);
-                    $super_attribute[$attr[0]] = $attr[1];
+        $cart_id = $request->input('cart_id'); // when the cart_id is not empty, then use the cart_id to get the cart
+
+        if(!empty($cart_id)) {
+            $cart = $this->cartRepository->findOrFail($cart_id);
+            Cart::setCart($cart);
+        }else{
+            $products = $request->input("products");
+            // 
+            Cart::deActivateCart();
+            foreach($products as $key=>$product) {
+                //var_dump($product);
+                $product['quantity'] = $product['amount'];
+                $product['selected_configurable_option'] = $product['variant_id'];
+                if(!empty($product['attr_id'])) {
+                    $attr_ids = explode(',', $product['attr_id']);
+                    foreach($attr_ids as $key=>$attr_id) {
+                        $attr = explode('_', $attr_id);
+                        $super_attribute[$attr[0]] = $attr[1];
+                    }
+    
+                    $product['super_attribute'] = $super_attribute;
                 }
-
-                $product['super_attribute'] = $super_attribute;
+                //Log::info("add product into cart ". json_encode($product));
+                $cart = Cart::addProduct($product['product_id'], $product);
+    
+                if (
+                    is_array($cart)
+                    && isset($cart['warning'])
+                ) {
+                    return new JsonResource([
+                        'message' => $cart['warning'],
+                    ]);
+                }
+    
             }
-            //Log::info("add product into cart ". json_encode($product));
-            $cart = Cart::addProduct($product['product_id'], $product);
-
-            if (
-                is_array($cart)
-                && isset($cart['warning'])
-            ) {
-                return new JsonResource([
-                    'message' => $cart['warning'],
-                ]);
-            }
-
         }
-
+        
         $this->returnInsurance($input, $cart);
 
 
