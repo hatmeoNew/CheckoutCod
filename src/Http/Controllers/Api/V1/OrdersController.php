@@ -17,6 +17,8 @@ use Webkul\CartRule\Repositories\CartRuleCouponRepository;
 use Webkul\CartRule\Repositories\CartRuleRepository;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Webkul\Shop\Http\Resources\CartResource;
+use Illuminate\Support\Facades\Artisan;
+use Nicelizhi\Shopify\Console\Commands\Order\Post;
 
 
 
@@ -262,6 +264,11 @@ class OrdersController extends Controller {
         // set the order status to processing
 
         $this->orderRepository->update(['status' => 'processing'], $order->id);
+
+        // add the order id to ququeue
+        $queue = config('app.name').':orders';
+        Artisan::queue((new Post())->getName(), ['--order_id'=> $order->id])->onConnection('rabbitmq')->onQueue($queue);
+
 
         // add the ip address and ip country to order
         $order_cod = new \NexaMerchant\CheckoutCod\Models\OrderCods();
