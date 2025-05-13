@@ -3,7 +3,7 @@ namespace NexaMerchant\CheckoutCod\Docs\V1\CheckoutCod\Controller;
 
 /**
  * @OA\Info(
- *      version="1.1.4",
+ *      version="1.1.5",
  *      title="NexaMerchant CheckoutCod Rest API Documentation",
  *      description="NexaMerchant CheckoutCod Rest API Documentation",
  *
