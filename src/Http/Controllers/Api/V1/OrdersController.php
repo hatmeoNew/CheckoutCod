@@ -19,12 +19,13 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Webkul\Shop\Http\Resources\CartResource;
 use Illuminate\Support\Facades\Artisan;
 use Nicelizhi\Shopify\Console\Commands\Order\Post;
+use Nicelizhi\Shopify\Console\Commands\Order\PostOdoo;
 
 
 
 class OrdersController extends Controller {
 
-    
+
     public function __construct(
         protected CartRepository $cartRepository,
         protected CategoryRepository $categoryRepository,
@@ -37,18 +38,18 @@ class OrdersController extends Controller {
         protected CartRuleRepository $cartRuleRepository
     )
     {
-        
+
     }
     /**
      * Create a new OrdersController instance.
      *
      * @param Request $request
-     * 
+     *
      * @access public
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request) {
-        
+
         $payment_method = $request->input('payment_method');
         $payment_method_input = $request->input('payment_method');
         $input = $request->all();
@@ -63,7 +64,7 @@ class OrdersController extends Controller {
             Cart::setCart($cart);
         }else{
             $products = $request->input("products");
-            // 
+            //
             Cart::deActivateCart();
             foreach($products as $key=>$product) {
                 //var_dump($product);
@@ -75,12 +76,12 @@ class OrdersController extends Controller {
                         $attr = explode('_', $attr_id);
                         $super_attribute[$attr[0]] = $attr[1];
                     }
-    
+
                     $product['super_attribute'] = $super_attribute;
                 }
                 //Log::info("add product into cart ". json_encode($product));
                 $cart = Cart::addProduct($product['product_id'], $product);
-    
+
                 if (
                     is_array($cart)
                     && isset($cart['warning'])
@@ -89,14 +90,14 @@ class OrdersController extends Controller {
                         'message' => $cart['warning'],
                     ]);
                 }
-    
+
             }
         }
-        
+
         $this->returnInsurance($input, $cart);
 
 
-        // 
+        //
         $addressData = [];
 
 
@@ -249,7 +250,7 @@ class OrdersController extends Controller {
             ], Response::HTTP_FORBIDDEN);
         }
 
-        
+
         Cart::collectTotals();
         $this->validateOrder();
         $cart = Cart::getCart();
@@ -267,7 +268,8 @@ class OrdersController extends Controller {
 
         // add the order id to ququeue
         $queue = config('app.name').':orders';
-        Artisan::queue((new Post())->getName(), ['--order_id'=> $order->id])->onConnection('rabbitmq')->onQueue($queue);
+        // Artisan::queue((new Post())->getName(), ['--order_id'=> $order->id])->onConnection('rabbitmq')->onQueue($queue);
+        Artisan::queue((new PostOdoo())->getName(), ['--order_id'=> $order->id])->onConnection('rabbitmq')->onQueue(config('app.name') . ':odoo_order');
 
 
         // add the ip address and ip country to order
@@ -282,8 +284,8 @@ class OrdersController extends Controller {
     }
 
     private function returnInsurance($input, $cart) {
-        // when return insurance eq 1 and auto add the insurance product into cart 
-        $input['return_insurance'] = isset($input['return_insurance']) ? $input['return_insurance'] : 0; 
+        // when return insurance eq 1 and auto add the insurance product into cart
+        $input['return_insurance'] = isset($input['return_insurance']) ? $input['return_insurance'] : 0;
         if($input['return_insurance']==1) {
 
             if(empty(config('onebuy.return_shipping_insurance.product_id'))) {
