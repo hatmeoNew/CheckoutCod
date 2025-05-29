@@ -268,9 +268,11 @@ class OrdersController extends Controller {
 
         // add the order id to ququeue
         $queue = config('app.name').':orders';
-        // Artisan::queue((new Post())->getName(), ['--order_id'=> $order->id])->onConnection('rabbitmq')->onQueue($queue);
-        Artisan::queue((new PostOdoo())->getName(), ['--order_id'=> $order->id])->onConnection('rabbitmq')->onQueue(config('app.name') . ':odoo_order');
-
+        if (config('onebuy.is_sync_erp')) {
+            Artisan::queue((new PostOdoo())->getName(), ['--order_id'=> $order->id])->onConnection('rabbitmq')->onQueue(config('app.name') . ':odoo_order');
+        } else {
+            Artisan::queue((new Post())->getName(), ['--order_id'=> $order->id])->onConnection('rabbitmq')->onQueue($queue);
+        }
 
         // add the ip address and ip country to order
         $order_cod = new \NexaMerchant\CheckoutCod\Models\OrderCods();
