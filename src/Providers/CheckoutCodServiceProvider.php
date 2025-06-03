@@ -91,9 +91,9 @@ class CheckoutCodServiceProvider extends ServiceProvider
         );
 
         // api docs
-        $this->mergeConfigFrom(
-            dirname(__DIR__) . '/Config/l5-swagger.php', 'l5-swagger.documentations'
-        );
+        // $this->mergeConfigFrom(
+        //     dirname(__DIR__) . '/Config/l5-swagger.php', 'l5-swagger.documentations'
+        // );
         
     }
 
