@@ -1,11 +1,11 @@
-# NexaMerchant/CheckoutCod
+# hatmeoNew/CheckoutCod
 
 > This package is a part of NexaMerchant, a Laravel E-commerce package. This package is used to provide a Cash on Delivery payment method for the NexaMerchant package.
 
-[![Build Status](https://github.com/NexaMerchant/CheckoutCod/workflows/Laravel/badge.svg)](https://github.com/NexaMerchant/CheckoutCod)
-[![Release](https://img.shields.io/github/release/NexaMerchant/CheckoutCod.svg?style=flat-square)](https://github.com/NexaMerchant/CheckoutCod/releases)
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/Nexa-Merchant/CheckoutCod.svg?style=flat-square)](https://packagist.org/packages/Nexa-Merchant/CheckoutCod)
-[![Total Downloads](https://img.shields.io/packagist/dt/Nexa-Merchant/CheckoutCod.svg?style=flat-square)](https://packagist.org/packages/Nexa-Merchant/CheckoutCod)
+[![Build Status](https://github.com/hatmeoNew/CheckoutCod/workflows/Laravel/badge.svg)](https://github.com/hatmeoNew/CheckoutCod)
+[![Release](https://img.shields.io/github/release/hatmeoNew/CheckoutCod.svg?style=flat-square)](https://github.com/hatmeoNew/CheckoutCod/releases)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/Nexa-Merchant/CheckoutCod.svg?style=flat-square)](https://packagist.org/packages/hatmeoNew/CheckoutCod)
+[![Total Downloads](https://img.shields.io/packagist/dt/hatmeoNew/CheckoutCod.svg?style=flat-square)](https://packagist.org/packages/hatmeoNew/CheckoutCod)
 
 # What is COD?
 
@@ -22,7 +22,7 @@ Add it to config/app.php $providers
 # How to Install with Composer
 
 ```
-composer require nexa-merchant/checkoutcod
+composer require hatmeo/checkoutcod
 ```
 
 # How to Publish the Config file
