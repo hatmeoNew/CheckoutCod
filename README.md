@@ -4,8 +4,8 @@
 
 [![Build Status](https://github.com/hatmeoNew/CheckoutCod/workflows/Laravel/badge.svg)](https://github.com/hatmeoNew/CheckoutCod)
 [![Release](https://img.shields.io/github/release/hatmeoNew/CheckoutCod.svg?style=flat-square)](https://github.com/hatmeoNew/CheckoutCod/releases)
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/Nexa-Merchant/CheckoutCod.svg?style=flat-square)](https://packagist.org/packages/hatmeoNew/CheckoutCod)
-[![Total Downloads](https://img.shields.io/packagist/dt/hatmeoNew/CheckoutCod.svg?style=flat-square)](https://packagist.org/packages/hatmeoNew/CheckoutCod)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/Nexa-Merchant/CheckoutCod.svg?style=flat-square)](https://packagist.org/packages/hatmeo/CheckoutCod)
+[![Total Downloads](https://img.shields.io/packagist/dt/hatmeoNew/CheckoutCod.svg?style=flat-square)](https://packagist.org/packages/hatmeo/CheckoutCod)
 
 # What is COD?
 
