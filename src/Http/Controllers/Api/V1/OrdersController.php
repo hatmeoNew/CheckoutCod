@@ -79,6 +79,9 @@ class OrdersController extends Controller {
 
                     $product['super_attribute'] = $super_attribute;
                 }
+                $product['variant_data'] = $this->productRepository->findOneWhere([
+                    'id' => $product['variant_id'],
+                ], ['sku', 'custom_sku']);
                 //Log::info("add product into cart ". json_encode($product));
                 $cart = Cart::addProduct($product['product_id'], $product);
 
